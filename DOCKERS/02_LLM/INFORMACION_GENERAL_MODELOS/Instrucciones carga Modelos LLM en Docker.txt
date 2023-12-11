@@ -1,0 +1,25 @@
+1. **Instalar Docker y Docker Compose**: Asegúrate de tener instalados Docker y Docker Compose en tu sistema. Puedes descargarlos e instalarlos desde la [página oficial de Docker](https://www.docker.com/products/docker-desktop).
+
+2. **Preparar el archivo docker-compose.yml**: Crea un archivo llamado `docker-compose.yml` en tu sistema y copia el contenido que has proporcionado en ese archivo. Este archivo define el servicio `llama-service` y sus configuraciones.
+
+3. **Ubicación del archivo y estructura de directorios**: Asegúrate de que el directorio actual en tu terminal o línea de comandos sea donde se encuentra el archivo `docker-compose.yml`. Además, verifica que el directorio `./models` exista en la misma ubicación que tu archivo `docker-compose.yml`, ya que se montará como un volumen en el contenedor.
+
+4. **Ejecutar Docker Compose**: Abre una terminal o línea de comandos y navega al directorio donde se encuentra el archivo `docker-compose.yml`. Ejecuta el siguiente comando para iniciar el contenedor definido en tu archivo `docker-compose.yml`:
+
+   ```bash
+   docker-compose up
+   ```
+
+   Este comando descargará la imagen `ghcr.io/abetlen/llama-cpp-python:latest` si aún no está en tu sistema, creará un contenedor llamado `Llama2`, configurará los puertos, volúmenes y variables de entorno según lo definido.
+
+5. **Verificar el funcionamiento del contenedor**: Una vez que el contenedor esté en ejecución, deberías poder acceder al servicio a través del puerto 8086 de tu host local. Puedes verificar si el servicio está funcionando correctamente accediendo a `http://localhost:8086` en tu navegador o utilizando herramientas como `curl`.
+
+6. **Interactuar con el servicio**: Dependiendo de cómo esté configurado el servicio en el contenedor, puedes interactuar con él mediante solicitudes HTTP o de otra manera adecuada.
+
+7. **Detener y eliminar el contenedor**: Cuando hayas terminado, puedes detener y eliminar el contenedor utilizando el comando:
+
+   ```bash
+   docker-compose down
+   ```
+
+   Este comando detendrá el contenedor y eliminará el contenedor, la red y los volúmenes creados por `docker-compose up`.

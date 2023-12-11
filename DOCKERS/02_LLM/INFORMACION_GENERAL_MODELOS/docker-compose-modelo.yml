@@ -1,0 +1,55 @@
+version: '3'  # Versión de Docker Compose
+
+services:
+  llama-service:  # Nombre del servicio
+    image: ghcr.io/abetlen/llama-cpp-python:latest  # Imagen a usar
+    container_name: Llama2  # Nombre del contenedor
+    ports:
+      - "8086:8000"  # Mapeo de puertos (host:contenedor)
+    volumes:
+      - ./models:/models  # Montaje de volumen para modelos
+    environment:
+      - MODEL=/models/llama-2-7b-chat.Q3_K_M.gguf  # Variable de entorno
+
+      # Parámetros de configuración del servidor con valores por defecto y comentarios
+      - MODEL=/models/llama-2-7b-chat.Q3_K_M.gguf  # Ruta al modelo para generar completaciones (por defecto: PydanticUndefined)
+      - MODEL_ALIAS  # Alias del modelo a utilizar para generar completaciones.
+      - N_GPU_LAYERS=0  # Número de capas a colocar en la GPU. El resto estará en la CPU. Establecer -1 para mover todo a la GPU. (por defecto: 0)
+      - MAIN_GPU=0  # GPU principal a utilizar. (por defecto: 0)
+      - TENSOR_SPLIT  # Dividir capas entre múltiples GPUs en proporción.
+      - VOCAB_ONLY=False  # Si solo devolver el vocabulario. (por defecto: False)
+      - USE_MMAP=True  # Usar mmap. (por defecto: True)
+      - USE_MLOCK=True  # Usar mlock. (por defecto: True)
+      - SEED=4294967295  # Semilla aleatoria. -1 para aleatorio. (por defecto: 4294967295)
+      - N_CTX=2048  # Tamaño del contexto. (por defecto: 2048)
+      - N_BATCH=512  # Tamaño del lote a utilizar por evaluación. (por defecto: 512)
+      - N_THREADS=8  # Número de hilos a utilizar. (por defecto: 8)
+      - N_THREADS_BATCH=8  # Número de hilos a utilizar durante el procesamiento por lotes. (por defecto: 8)
+      - ROPE_SCALING_TYPE  # Tipo de escalado de RoPE
+      - ROPE_FREQ_BASE=0.0  # Frecuencia base de RoPE (por defecto: 0.0)
+      - ROPE_FREQ_SCALE=0.0  # Factor de escalado de frecuencia de RoPE (por defecto: 0.0)
+      - YARN_EXT_FACTOR  # Factor de extensión de YARN
+      - YARN_ATTN_FACTOR  # Factor de atención de YARN
+      - YARN_BETA_FAST  # YARN beta rápido
+      - YARN_BETA_SLOW  # YARN beta lento
+      - YARN_ORIG_CTX  # Contexto original de YARN
+      - MUL_MAT_Q=True  # Si es verdadero, utilizar núcleos de multiplicación de matriz experimentales (por defecto: True)
+      - F16_KV=True  # Si utilizar clave/valor f16. (por defecto: True)
+      - LOGITS_ALL=True  # Si devolver logits. (por defecto: True)
+      - EMBEDDING=True  # Si utilizar incrustaciones. (por defecto: True)
+      - LAST_N_TOKENS_SIZE=64  # Últimos n tokens a mantener para el cálculo de la penalización por repetición. (por defecto: 64)
+      - LORA_BASE  # Ruta opcional al modelo base, útil si se utiliza un modelo base cuantizado y se desea aplicar LoRA a un modelo f16.
+      - LORA_PATH  # Ruta a un archivo de LoRA para aplicar al modelo.
+      - NUMA=False  # Habilitar soporte NUMA. (por defecto: False)
+      - CHAT_FORMAT=llama-2  # Formato de chat a utilizar. (por defecto: llama-2)
+      - CLIP_MODEL_PATH  # Ruta a un modelo CLIP para utilizar en la finalización de chat multimodal.
+      - CACHE=False  # Utilizar una caché para reducir los tiempos de procesamiento de las solicitudes evaluadas. (por defecto: False)
+      - CACHE_TYPE=ram  # Tipo de caché a utilizar. Solo se utiliza si CACHE es True. (por defecto: ram)
+      - CACHE_SIZE=2147483648  # Tamaño de la caché en bytes. Solo se utiliza si CACHE es True. (por defecto: 2147483648)
+      - VERBOSE=True  # Si imprimir información de depuración. (por defecto: True)
+      - HOST=localhost  # Dirección de escucha (por defecto: localhost)
+      - PORT=8000  # Puerto de escucha (por defecto: 8000)
+      - INTERRUPT_REQUESTS=True  # Si interrumpir solicitudes cuando se recibe una nueva solicitud. (por defecto: True)
+
+    restart: no  # Política de reinicio
+

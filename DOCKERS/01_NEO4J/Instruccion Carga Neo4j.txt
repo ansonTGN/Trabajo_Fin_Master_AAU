@@ -1,0 +1,42 @@
+# Instrucciones para Iniciar Neo4j con Docker Compose
+
+## Preparativos Iniciales
+
+1. **Instalar Docker y Docker Compose**
+   - Asegúrate de tener Docker y Docker Compose instalados. Descárgalos desde [Docker Official Website](https://www.docker.com/get-started).
+
+2. **Preparar el Archivo `.env` (Opcional)**
+   - Si usas variables de entorno (como `NEO4J_PASSWORD`), crea un archivo `.env` en el mismo directorio que tu `docker-compose.yml` con el contenido necesario, por ejemplo:
+     ```
+     NEO4J_PASSWORD=tu_contraseña_secreta
+     ```
+
+3. **Archivos y Directorios**
+   - Verifica que los directorios para los volúmenes (como `./data`, `./logs`, `./import`, etc.) existan o créalos si es necesario.
+
+## Iniciar Neo4j usando Docker Compose
+
+4. **Ubicación del Archivo `docker-compose.yml`**
+   - Navega en la línea de comandos al directorio donde está almacenado tu `docker-compose.yml`.
+
+5. **Arrancar los Servicios**
+   - Ejecuta `docker-compose up -d` para iniciar los servicios en modo 'detached'.
+
+6. **Verificar el Estado de los Contenedores**
+   - Usa `docker-compose ps` para verificar el estado de los contenedores.
+
+7. **Acceder a Neo4j**
+   - Accede a `http://localhost:7474` en tu navegador para usar la interfaz web de Neo4j.
+
+## Operaciones Adicionales
+
+8. **Detener los Servicios**
+   - Detén los servicios con `docker-compose down`.
+
+9. **Manejo de Volcados y Restauraciones**
+   - Los servicios `neo4j-dump` y `neo4j-restore` se utilizan para tareas específicas de volcado y restauración.
+
+## Notas Finales
+- Realiza cambios en el archivo `docker-compose.yml` según sea necesario y reinicia los servicios para aplicarlos.
+- Mantén tus archivos de configuración y datos seguros.
+

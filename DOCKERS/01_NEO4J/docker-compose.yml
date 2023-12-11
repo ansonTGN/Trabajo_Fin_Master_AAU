@@ -1,0 +1,94 @@
+# Docker Compose file version specification
+# Especificación de la versión del archivo Docker Compose
+version: '3'
+
+# Definition of services in the Docker application
+# Definición de los servicios en la aplicación Docker
+services:
+
+  # Service for Neo4j database
+  # Servicio para la base de datos Neo4j
+  neo4j:
+    image: neo4j:5.13.0 # Using Neo4j version 5.13.0
+                          # Usando la versión 5.13.0 de Neo4j
+    container_name: neo4j-apoc # Container name for the Neo4j service
+                                # Nombre del contenedor para el servicio Neo4j
+    ports:
+      - "7474:7474" # Port mapping for Neo4j web interface
+                    # Mapeo de puerto para la interfaz web de Neo4j
+      - "7687:7687" # Port mapping for Bolt protocol
+                    # Mapeo de puerto para el protocolo Bolt
+    volumes:
+      - ./data:/data # Mount volume for data
+                     # Montar volumen para datos
+      - ./logs:/logs # Mount volume for logs
+                     # Montar volumen para registros
+      - ./import:/var/lib/neo4j/import # Mount volume for import directory
+                                        # Montar volumen para el directorio de importación
+      - ./plugins:/plugins # Mount volume for plugins
+                            # Montar volumen para plugins
+      - ./config:/var/lib/neo4j/conf # Mount volume for custom configuration
+                                      # Montar volumen para configuración personalizada
+      - ./backups:/backups # Mount volume for backups
+                            # Montar volumen para respaldos
+      - ./labs:/var/lib/neo4j/labs # Mount volume for labs directory
+                                    # Montar volumen para el directorio labs
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD} # Environment variable for Neo4j authentication
+                                          # Variable de entorno para la autenticación de Neo4j
+      NEO4J_PLUGINS: '["apoc", "graph-data-science"]' # Specifies plugins to be installed
+                                                      # Especifica los plugins a instalar
+    networks:
+      - neo4j-net # Connects to the 'neo4j-net' network
+                  # Se conecta a la red 'neo4j-net'
+
+  # Service for restoring Neo4j database from a backup
+  # Servicio para restaurar la base de datos Neo4j desde un respaldo
+  neo4j-restore:
+    image: neo4j:5.13.0 # Using the same Neo4j image
+                         # Usando la misma imagen de Neo4j
+    container_name: neo4j-restore # Container name for the restore service
+                                   # Nombre del contenedor para el servicio de restauración
+    command: >
+      /bin/bash -c "
+      neo4j-admin database load --from-path=/backups neo4j --overwrite-destination --verbose;
+      echo 'Backup restored successfully.'"
+    volumes:
+      - ./backups:/backups # Mount volume for backups
+                            # Montar volumen para respaldos
+      - ./data:/data # Mount volume for data
+                     # Montar volumen para datos
+    depends_on:
+      - neo4j # Depends on the 'neo4j' service
+               # Depende del servicio 'neo4j'
+    networks:
+      - neo4j-net # Connects to the 'neo4j-net' network
+                  # Se conecta a la red 'neo4j-net'
+
+  # Service for dumping the Neo4j database
+  # Servicio para realizar un volcado de la base de datos Neo4j
+  neo4j-dump:
+    image: neo4j:5.13.0 # Using the same Neo4j image
+                         # Usando la misma imagen de Neo4j
+    container_name: neo4j-dump # Container name for the dump service
+                                # Nombre del contenedor para el servicio de volcado
+    command: >
+      /bin/bash -c "
+      while ! nc -z neo4j 7687; do
+        sleep 1;
+      done;
+      neo4j-admin dump --database=neo4j --to=/backups/neo4j-dump-$(date +'%Y%m%d-%H%M%S').dump"
+    volumes:
+      - ./backups:/backups # Mount volume for backups
+                            # Montar volumen para respaldos
+    networks:
+      - neo4j-net # Connects to the 'neo4j-net' network
+                  # Se conecta a la red 'neo4j-net'
+
+# Network definitions for the Docker application
+# Definiciones de red para la aplicación Docker
+networks:
+  neo4j-net:
+    driver: bridge # Uses the bridge network driver
+                    # Utiliza el controlador de red 'bridge'
+
