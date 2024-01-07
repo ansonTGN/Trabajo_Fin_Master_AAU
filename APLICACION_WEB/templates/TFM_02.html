@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimento Análisis Texto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #6dd5ed, #2193b0);
+            color: #fff;
+        }
+        .chat-container {
+            max-width: 800px;
+            margin: 2% auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .chat-heading {
+            text-align: center;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #4a00e0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .chat-input, .form-control {
+            margin-top: 10px;
+            height: 50px;
+            border: 1px solid #ddd;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+        .chat-button {
+            background-color: #8e2de2;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .chat-button:hover {
+            background-color: #4a00e0;
+        }
+        .chat-button-highlight {
+            background-color: #ff9800; /* Un color que resalte, como naranja */
+            color: white;
+            /* Las demás propiedades son heredadas de .chat-button */
+        }
+        .json-response-content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            backdrop-filter: blur(5px);
+        }
+        .json-message {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-left: 3px solid #007bff;
+            background-color: #f1f1f1;
+        }
+        .mensaje-procesado {
+            border: 1px solid #007bff;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+        .resultado-analizado {
+            border: 1px solid #28a745;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #eff8f1;
+        }
+        .cadena-analizada {
+            border: 1px solid #17a2b8;
+            padding: 5px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            background-color: #e8f8fc;
+        }
+        .nodo-mayor-similitud {
+            border: 1px solid #ffc107;
+            padding: 5px;
+            margin-top: 5px;
+            border-radius: 5px;
+            background-color: #fff3cd;
+        }
+        @media (max-width: 768px) {
+            .chat-container {
+                margin: 5% auto;
+                padding: 15px;
+            }
+            /* Otros ajustes responsivos... */
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimento Análisis Texto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos CSS aquí */
+    </style>
+</head>
+<body>
+    <div class="container chat-container">
+        <h1 class="chat-heading">TFM Angel Urbina. Versión 2.0</h1>
+        <h2 class="input-screen-title">Mensaje de la madre:</h2>
+        <textarea id="messageInput" class="form-control chat-input" placeholder="Escribe tu mensaje aquí..."></textarea>
+        <button id="sendButton" class="btn chat-button">Análisis Arbol</button>
+        <button id="keyIdeasButton" class="btn chat-button">Ideas Claves</button>
+        <button id="chatButton" class="btn chat-button">Conversación</button>
+        <button id="ModoChat" class="btn chat-button">ModoChat</button>
+        <button id="ModoPregunta" class="btn chat-button">ModoPregunta</button>
+
+    </div>
+
+   <!-- Ventana para mostrar el resumen -->
+   <div class="container json-response-container">
+    <h2 class="input-screen-title">Ideas Clave en Mensaje de la Madre:</h2>
+   <div id="summaryResponse" class="json-response-content"></div>
+</div>
+
+   <!-- Ventana para mostrar el chat -->
+   <div class="container json-response-container">
+    <h2 class="input-screen-title">Ventana Conversación:</h2>
+   <div id="ChatResponse" class="json-response-content"></div>
+</div>
+
+    <!-- Ventana para mostrar respuestas JSON -->
+    <div class="container json-response-container">
+        <h2 class="input-screen-title">Identificación Nodos en el árbol de la App:</h2>
+        <div id="jsonResponse" class="json-response-content"></div>
+    </div>
+
+<script>
+
+document.getElementById('sendButton').addEventListener('click', async function() {
+    var message = document.getElementById('messageInput').value;
+    const postRequestData = {
+        mensaje: message
+    };
+
+    try {
+        const postResponse = await fetch('/post_message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postRequestData)
+        });
+
+        if (postResponse.ok) {
+            const responseText = await postResponse.text();
+            try {
+                const jsonData = JSON.parse(responseText);
+                displayJsonResponse(jsonData);
+            } catch (parseError) {
+                console.error('Error al parsear la respuesta JSON:', parseError);
+                document.getElementById('jsonResponse').textContent = 'Error al parsear la respuesta JSON: ' + parseError.message;
+            }
+        } else {
+            console.error('Error:', postResponse.status, postResponse.statusText);
+            document.getElementById('jsonResponse').textContent = `Error en la solicitud: ${postResponse.status} ${postResponse.statusText}`;
+        }
+    } catch (error) {
+        console.error('Error de red o al realizar la solicitud:', error);
+        document.getElementById('jsonResponse').textContent = 'Error de red o al realizar la solicitud: ' + error.message;
+    }
+});
+
+document.getElementById('keyIdeasButton').addEventListener('click', async function() {
+    var message = document.getElementById('messageInput').value;
+    const postRequestData = {
+        mensaje: message
+    };
+
+    try {
+        const postResponse = await fetch('/post_resumen', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postRequestData)
+        });
+
+        if (postResponse.ok) {
+            const responseText = await postResponse.text();
+            try {
+                const jsonData = JSON.parse(responseText);
+                displaySummaryResponse(jsonData); // Función para mostrar el resumen
+            } catch (parseError) {
+                console.error('Error al parsear la respuesta JSON:', parseError);
+                document.getElementById('summaryResponse').textContent = 'Error al parsear la respuesta JSON: ' + parseError.message;
+            }
+        } else {
+            console.error('Error:', postResponse.status, postResponse.statusText);
+            document.getElementById('summaryResponse').textContent = `Error en la solicitud: ${postResponse.status} ${postResponse.statusText}`;
+        }
+    } catch (error) {
+        console.error('Error de red o al realizar la solicitud:', error);
+        document.getElementById('summaryResponse').textContent = 'Error de red o al realizar la solicitud: ' + error.message;
+    }
+});
+
+document.getElementById('chatButton').addEventListener('click', async function() {
+    var message = document.getElementById('messageInput').value;
+    const postRequestData = {
+        mensaje: message
+    };
+
+    try {
+        const postResponse = await fetch('/post_chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postRequestData)
+        });
+
+        if (postResponse.ok) {
+            const responseText = await postResponse.text();
+            try {
+                const jsonData = JSON.parse(responseText);
+                displayChatResponse(jsonData);
+            } catch (parseError) {
+                console.error('Error al parsear la respuesta JSON:', parseError);
+                document.getElementById('ChatResponse').textContent = 'Error al parsear la respuesta JSON: ' + parseError.message;
+            }
+        } else {
+            console.error('Error:', postResponse.status, postResponse.statusText);
+            document.getElementById('ChatResponse').textContent = `Error en la solicitud: ${postResponse.status} ${postResponse.statusText}`;
+        }
+    } catch (error) {
+        console.error('Error de red o al realizar la solicitud:', error);
+        document.getElementById('ChatResponse').textContent = 'Error de red o al realizar la solicitud: ' + error.message;
+    }
+});
+
+document.getElementById('ModoChat').addEventListener('click', async function() {
+    const postRequestData = {
+        valor: true
+    };
+
+    try {
+        const postResponse = await fetch('/set_valor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postRequestData)
+        });
+
+        if (postResponse.ok) {
+            document.getElementById('ChatResponse').textContent = 'Se generaran preguntas. Pulsa el botón Conversación para ver la conversación';
+            const modoPreguntaButton = document.getElementById('ModoPregunta');
+            const modoChatButton = document.getElementById('ModoChat');
+
+            // Cambia el color del botón ModoPregunta
+            modoPreguntaButton.classList.add('chat-button-highlight');
+            modoPreguntaButton.classList.remove('chat-button');
+
+            // Cambia el color del botón ModoChat
+            modoChatButton.classList.add('chat-button');
+            modoChatButton.classList.remove('chat-button-highlight');
+        } else {
+            console.error('Error:', postResponse.status, postResponse.statusText);
+            document.getElementById('ChatResponse').textContent = `Error en la solicitud: ${postResponse.status} ${postResponse.statusText}`;
+        }
+    } catch (error) {
+        console.error('Error de red o al realizar la solicitud:', error);
+        document.getElementById('ChatResponse').textContent = 'Error de red o al realizar la solicitud: ' + error.message;
+    }
+});
+
+document.getElementById('ModoPregunta').addEventListener('click', async function() {
+    const postRequestData = {
+        valor: false
+    };
+
+    try {
+        const postResponse = await fetch('/set_valor', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postRequestData)
+        });
+
+        if (postResponse.ok) {
+            document.getElementById('ChatResponse').textContent = 'Se generaran preguntas. Pulsa el botón Conversación para ver la conversación';
+            const modoPreguntaButton = document.getElementById('ModoPregunta');
+            const modoChatButton = document.getElementById('ModoChat');
+
+            // Cambia el color del botón ModoPregunta
+            modoPreguntaButton.classList.add('chat-button');
+            modoPreguntaButton.classList.remove('chat-button-highlight');
+
+            // Cambia el color del botón ModoChat
+            modoChatButton.classList.add('chat-button-highlight');
+            modoChatButton.classList.remove('chat-button');
+
+
+        } else {
+            console.error('Error:', postResponse.status, postResponse.statusText);
+            document.getElementById('ChatResponse').textContent = `Error en la solicitud: ${postResponse.status} ${postResponse.statusText}`;
+        }
+    } catch (error) {
+        console.error('Error de red o al realizar la solicitud:', error);
+        document.getElementById('ChatResponse').textContent = 'Error de red o al realizar la solicitud: ' + error.message;
+    }
+});
+
+function displaySummaryResponse(jsonData) {
+    console.log("Datos recibidos:", jsonData); // Imprimir los datos recibidos para depuración
+
+    const container = document.getElementById('summaryResponse');
+    container.innerHTML = ''; // Limpiar el contenido anterior
+
+    // Comprobar si jsonData tiene la clave 'resumenes' y es una lista con elementos
+    console.log("Tipo de 'jsonData.resumenes':", typeof jsonData.resumenes); // Depurar el tipo
+    console.log("Contenido de 'jsonData.resumenes':", jsonData.resumenes); // Depurar el contenido
+
+    if (jsonData && jsonData.resumenes && Array.isArray(jsonData.resumenes) && jsonData.resumenes.length > 0) {
+        jsonData.resumenes.forEach((resumen, index) => {
+            const parrafo = document.createElement('p');
+            parrafo.textContent = `Resumen ${index + 1}: ${resumen}`;
+            container.appendChild(parrafo);
+        });
+    } else {
+        container.textContent = 'No se recibieron resúmenes válidos o la lista está vacía.';
+    }
+}
+
+
+function displayJsonResponse(jsonData) {
+    const container = document.getElementById('jsonResponse');
+    container.innerHTML = ''; // Limpiar el contenido anterior
+    console.log("Respuesta recibida:", jsonData);
+
+    // Asegurarse de que jsonData es un objeto
+    let data;
+    if (typeof jsonData === 'string') {
+        try {
+            data = JSON.parse(jsonData);
+        } catch (error) {
+            console.error('Error al parsear JSON:', error);
+            container.textContent = 'Error al parsear la respuesta JSON.';
+            return;
+        }
+    } else {
+        data = jsonData;
+    }
+
+    // Procesar la respuesta JSON
+    if (data && Array.isArray(data.Mensajes_Procesados) && data.Mensajes_Procesados.length > 0) {
+        data.Mensajes_Procesados.forEach((mensajeProcesado) => {
+            const mensajeDiv = document.createElement('div');
+            mensajeDiv.className = 'mensaje-procesado';
+            mensajeDiv.innerHTML = `<strong>Mensaje:</strong> ${mensajeProcesado.Contenido}<br>`;
+
+            mensajeProcesado.Resultados_Analizados.forEach(resultado => {
+                const resultadoDiv = document.createElement('div');
+                resultadoDiv.className = 'resultado-analizado';
+                resultadoDiv.innerHTML = `
+                    <strong>Cádena:</strong> ${resultado.Indice}<br>
+                    <strong>Clasificación:</strong> ${resultado.Clasificacion}<br>
+                    <strong>Similaridad Media:</strong> ${resultado.Similaridad_Media}<br>
+                `;
+
+                resultado.Cadenas_Analizadas.forEach(cadena => {
+                    const cadenaDiv = document.createElement('div');
+                    cadenaDiv.className = 'cadena-analizada';
+                    cadenaDiv.innerHTML = `
+                        <strong>Nodo Índice:</strong> ${cadena.Indice_Nodo}<br>
+                        <strong>Texto:</strong> ${cadena.Texto}<br>
+                        <strong>Similaridad:</strong> ${cadena.Similaridad}<br>
+                    `;
+                    resultadoDiv.appendChild(cadenaDiv);
+                });
+
+                if (resultado.Nodo_Mayor_Similitud) {
+                    const nodoMayorDiv = document.createElement('div');
+                    nodoMayorDiv.className = 'nodo-mayor-similitud';
+                    nodoMayorDiv.innerHTML = `
+                        <strong>Nodo Mayor Similaridad Índice:</strong> ${resultado.Nodo_Mayor_Similitud.Indice}<br>
+                        <strong>Texto:</strong> ${resultado.Nodo_Mayor_Similitud.Texto}<br>
+                        <strong>Similaridad:</strong> ${resultado.Nodo_Mayor_Similitud.Similaridad}<br>
+                    `;
+                    resultadoDiv.appendChild(nodoMayorDiv);
+                }
+
+                mensajeDiv.appendChild(resultadoDiv);
+            });
+
+            container.appendChild(mensajeDiv);
+            
+        });
+        return 'Datos procesados correctamente.';
+    } else {
+        container.textContent = 'No se recibieron datos procesados o la respuesta es inválida.';
+        return 'No se recibieron datos procesados o la respuesta es inválida.';
+    }
+}
+
+function displayChatResponse(jsonData) {
+    console.log("Datos recibidos:", jsonData); // Imprimir los datos recibidos para depuración
+
+    const container = document.getElementById('ChatResponse');
+    container.innerHTML = ''; // Limpiar el contenido anterior
+
+    // Comprobar si jsonData tiene la clave 'resumenes' y es una lista con elementos
+    console.log("Tipo de 'jsonData.chat':", typeof jsonData.chat); // Depurar el tipo
+    console.log("Contenido de 'jsonData.chat':", jsonData.chat); // Depurar el contenido
+
+    if (jsonData && jsonData.chat && Array.isArray(jsonData.chat) && jsonData.chat.length > 0) {
+        jsonData.chat.forEach((chat, index) => {
+            const parrafo = document.createElement('p');
+            parrafo.textContent = `Chat ${index + 1}: ${chat}`;
+            container.appendChild(parrafo);
+        });
+    } else {
+        container.textContent = 'No se recibieron resúmenes válidos o la lista está vacía.';
+    }
+}
+
+</script>
+  
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
