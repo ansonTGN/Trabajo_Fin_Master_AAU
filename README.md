@@ -2,20 +2,27 @@
 
 ## Introducción
 
-## Sección: Descripción General del Problema
+# Descripción general del problema
 
-La propuesta de mi tesis de fin de máster se centra en la mejora de una aplicación existente de lactancia materna mediante el uso de técnicas avanzadas de procesamiento de lenguaje natural y aprendizaje automático. Esta aplicación actualmente utiliza un enfoque basado en preguntas para identificar los problemas específicos que las usuarias desean resolver en relación con la lactancia materna.
+La propuesta de mi tesis de fin de máster se centra en investigar como mejorar la aplicación existente de lactancia materna [^1] mediante el uso de técnicas generativas de procesamiento de lenguaje. Esta aplicación actualmente utiliza un enfoque basado en arboles de decisión [^2] para solucionar los problemas específicos que las usuarias desean resolver en relación con la lactancia materna.
 
-Mi objetivo principal es optimizar este proceso de identificación de problemas y búsqueda de soluciones de una manera más eficiente y efectiva. Para lograr esto, propongo la implementación de modelos generativos de lenguaje para la extracción de información y resumen extractivo de consultas de usuarias. De esta forma se conseguirá resumir la query y se intentara la actualización automática del perfil de la usuaria.
+Mi objetivo principal es optimizar este proceso de identificación de los problemas planteados y permitir la búsqueda de soluciones de una manera más eficiente y efectiva. Para lograr esto, propongo la implementación de *modelos generativos de lenguaje* (Ver: Modelos Generativos de Lenguaje) para la extracción de información y resumen extractivo de consultas de usuarias. Esto permitirá:
 
-Para evaluar la efectividad de estos modelos generativos, llevaré a cabo un estudio comparativo utilizando dos enfoques diferentes. Uno se realizara utilizando el modelo de lenguaje GPT-4 de OpenAI, ampliamente reconocido por su capacidad de generación de texto, y el segundo será la utilización de un modelo de lenguaje de código libre para comparar su rendimiento con las soluciones comerciales.
+1. Resumir e identificar las temáticas principales de las consultas.
+2. Localizar puntos óptimos en el árbol de preguntas y respuestas de la aplicación.
+3. Generar un chat interactivo para la evaluación de dos aspectos clave:
+    - Viabilidad de generación de conversaciones automáticas.
+    - Identificación de preguntas relevantes para resolver las problemáticas planteadas con el objetivo de asistir al panel de expertas.
 
-Este proyecto de tesis tiene como objetivo brindar a las madres que utilizan la aplicación una experiencia más enriquecedora al proporcionar respuestas y soluciones más precisas y útiles para sus problemas de lactancia materna. Además, se espera que los resultados del estudio comparativo ayuden a identificar la eficacia relativa de los modelos de lenguaje utilizados y contribuyan al avance de la investigación en este campo.
+Para evaluar la efectividad de estos modelos generativos, intentaré llevar a cabo un estudio comparativo utilizando dos enfoques diferentes. Uno se realizara utilizando el modelo de lenguaje GPT-4 [^3] de OpenAI, ampliamente reconocido por su capacidad de generación de texto, y el segundo será explorar la posible utilización de modelos de lenguaje libres [^4] [^5] para comparar su rendimiento con las soluciones comerciales.
 
-## Citas
+Este proyecto de tesis tiene como objetivo brindar a las madres que utilizan la aplicación una experiencia más enriquecedora al proporcionar *respuestas y soluciones más precisas y útiles* para sus problemas de lactancia materna. Además, se espera que los resultados del estudio comparativo ayuden a identificar la eficacia relativa de los modelos de lenguaje utilizados y contribuyan al avance en el desarrollo de las mejoras e investigaciones en este campo.
 
-- GPT-4, OpenAI. [openai2023gpt4]
-- Modelo de lenguaje de código libre. [touvron2023llama], [Mistral]
+[^1]: Referencia a "LACTAPP".
+[^2]: Referencia a "arbol-decision".
+[^3]: Referencia a "openai2023gpt4".
+[^4]: Referencia a "touvron2023llama".
+[^5]: Referencia a "Mistral".
 
 ---
 
