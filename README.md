@@ -77,4 +77,6 @@ Los parámetros de configuración de los modelos son los siguientes:
 | --verbose VERBOSE | Si imprimir información de depuración | True |
 | --host HOST | Dirección de escucha | localhost |
 | --port PORT | Puerto de escucha | 8000 |
-| --interrupt_requests INTERRUPT_REQUESTS | Si interrumpir las solicitudes cuando se recibe una nueva solicitud | True |
+| --interrupt_requests INTERRUPT_REQUESTS | Si interrumpir las solicitudes cuando se recibe una nueva solicitud | True 
+
+**Nota:** Para el funcionamiento del programa es necesario tener arrancado un servicio DOCKER con Neo4j. (Dentro de esta BBDD estara la estructura de datos de la app. No se proporciona el DUMP de estos datos por motivos de confidencialidad)|
