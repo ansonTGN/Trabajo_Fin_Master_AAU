@@ -145,6 +145,10 @@ Esquema de servicio Docker utilizado para mantener la estructura de árboles de 
 
 ### Aplicación WEB
 
+Esquema conceptual aplicativo construido
+
+![Esquema conceptual](/ESQUEMAS_GRAFICOS/APLICATIVO_WEB.png)
+
 Imagen de la aplicación WEB construida
 
 ![imagen WEB](/ESQUEMAS_GRAFICOS/WEB.png)
