@@ -37,8 +37,6 @@ Este apartado proporciona una guía sencilla para entender, obtener y utilizar M
 
 ## 1. Obtener y Usar Modelos de Lenguaje de Gran Escala (LLM)
 
-[Tabla Comparativa de Modelos Open LLMs](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)
-
 Los modelos de lenguaje de gran escala se pueden implementar y acceder de diversas maneras, incluyendo:
 
 ### Autoalojamiento
@@ -60,6 +58,8 @@ Los modelos de lenguaje de gran escala se pueden implementar y acceder de divers
 ## 2. Información de Modelos Específicos
 
 Este apartado provee enlaces y detalles sobre diversos LLMs para su uso en distintos contextos.
+
+[Tabla Comparativa de Modelos Open LLMs](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)
 
 ### 2.1 WEB the Bloke
 
