@@ -126,13 +126,6 @@ Información y documentación sobre Modelos Llama2.
 
 - [Página de Llama 2 en AI Meta](https://ai.meta.com/llama/)
 
-Detalles de los modelos:
-
-#### Llama 2
-(Descripción de los modelos)
-
-#### Code Llama
-(Descripción de los modelos)
 
 ### 2.4 Modelos GPT
 
