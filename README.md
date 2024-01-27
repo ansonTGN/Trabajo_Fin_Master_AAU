@@ -137,4 +137,16 @@ Los parámetros de configuración de los modelos son los siguientes:
 | --port PORT | Puerto de escucha | 8000 |
 | --interrupt_requests INTERRUPT_REQUESTS | Si interrumpir las solicitudes cuando se recibe una nueva solicitud | True 
 
+### DOCKER Neo4j
+
+Esquema de servicio Docker utilizado para mantener la estructura de árboles de la App. (Ver nota)
+
+![Esquema Neo4jDocker](/ESQUEMAS_GRAFICOS/NEOEsquema1.png)
+
+### Aplicación WEB
+
+Imagen de la aplicación WEB construida
+
+![imagen WEB](/ESQUEMAS_GRAFICOS/WEB.png)
+
 **Nota:** Para el funcionamiento del programa es necesario tener arrancado un servicio DOCKER con Neo4j. (Dentro de esta BBDD estara la estructura de datos de la app. No se proporciona el DUMP de estos datos por motivos de confidencialidad)|
