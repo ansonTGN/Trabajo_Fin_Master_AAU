@@ -37,6 +37,8 @@ Este apartado proporciona una guía sencilla para entender, obtener y utilizar M
 
 ## 1. Obtener y Usar Modelos de Lenguaje de Gran Escala (LLM)
 
+[Tabla Comparativa de Modelos Open LLMs](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)
+
 Los modelos de lenguaje de gran escala se pueden implementar y acceder de diversas maneras, incluyendo:
 
 ### Autoalojamiento
@@ -53,6 +55,7 @@ Los modelos de lenguaje de gran escala se pueden implementar y acceder de divers
 - **Descripción**: Llamar a LLMs directamente a través de una API.
 - **Proveedores**: Incluye [AWS Bedrock](https://aws.amazon.com/es/bedrock/), [Replicate](https://replicate.com/), [Anyscale](https://www.anyscale.com/), [Together](https://www.together.ai/), entre otros. Tampien es el esquema utilizado por [OpenAi](https://openai.com/) para sus modelos.
 - **Ventajas**: La opción más sencilla en general.
+- **Tabla Comparativa**: [Tabla Comparativa de Rendimiento](https://github.com/ray-project/llmperf-leaderboard)
 
 ## 2. Información de Modelos Específicos
 
