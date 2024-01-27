@@ -29,6 +29,60 @@ Este proyecto de tesis tiene como objetivo brindar a las madres que utilizan la 
 ![Imagen de Introducción](/ESQUEMAS_GRAFICOS/ESQUEMA_PROYECTO_10_12_23.png)
 
 
+
+
+# Guía de uso de Modelos de Lenguaje de Gran Escala (LLMs)
+
+Este documento proporciona una guía comprensiva para entender, obtener y utilizar Modelos de Lenguaje de Gran Escala (LLMs).
+
+## 1. Obtener y Usar Modelos de Lenguaje de Gran Escala (LLM)
+
+Los modelos de lenguaje de gran escala se implementan y acceden de diversas maneras, incluyendo:
+
+### Autoalojamiento
+- **Descripción**: Utilizar hardware local para realizar inferencias.
+- **Ejemplo**: Ejecutar Llama 2 en tu PC usando [`llama.cpp`](https://github.com/ggerganov/llama.cpp).
+- **Ventajas**: Ideal para privacidad/seguridad o si ya cuentas con una GPU.
+
+### Alojamiento en la Nube
+- **Descripción**: Utilizar un proveedor de la nube para desplegar una instancia que aloje un modelo específico.
+- **Ejemplo**: Ejecutar LLM en proveedores de la nube como [AWS](https://aws.amazon.com/es/?nc2=h_lg), [Azure](https://azure.microsoft.com/es-es), [GCP](https://cloud.google.com/?hl=es) y otros.
+- **Ventajas**: Óptimo para personalizar modelos y su tiempo de ejecución (ej. ajustar un modelo para tu caso de uso).
+
+### API Alojada
+- **Descripción**: Llamar a LLMs directamente a través de una API.
+- **Proveedores**: Incluye [AWS Bedrock](https://aws.amazon.com/es/bedrock/), [Replicate](https://replicate.com/), [Anyscale](https://www.anyscale.com/), [Together](https://www.together.ai/), entre otros.
+- **Ventajas**: La opción más sencilla en general.
+
+## 2. Información de Modelos Específicos
+
+Este apartado provee enlaces y detalles sobre diversos LLMs para su uso en distintos contextos.
+
+### 2.1 WEB the Bloke
+
+Recopilatorio de modelos para uso en modo local.
+
+- [TheBloke en Hugging Face](https://huggingface.co/TheBloke)
+
+### 2.2 Modelos Mistral7b
+
+Información y documentación sobre Modelos Mistral7b.
+
+- [Documentación de Modelos Mistral7b](https://docs.mistral.ai/models/)
+
+### 2.3 Modelos Llama2
+
+Información y documentación sobre Modelos Llama2.
+
+- [Página de Llama 2 en AI Meta](https://ai.meta.com/llama/)
+
+
+### 2.4 Modelos GPT
+
+Información y documentación sobre Modelos GPT.
+
+- [Documentación de Modelos GPT en OpenAI Platform](https://platform.openai.com/docs/models)
+
 ## Instalación
 
 Instrucciones paso a paso sobre cómo instalar y configurar el proyecto.
@@ -80,55 +134,3 @@ Los parámetros de configuración de los modelos son los siguientes:
 | --interrupt_requests INTERRUPT_REQUESTS | Si interrumpir las solicitudes cuando se recibe una nueva solicitud | True 
 
 **Nota:** Para el funcionamiento del programa es necesario tener arrancado un servicio DOCKER con Neo4j. (Dentro de esta BBDD estara la estructura de datos de la app. No se proporciona el DUMP de estos datos por motivos de confidencialidad)|
-
-# Guía de Modelos de Lenguaje de Gran Escala (LLMs)
-
-Este documento proporciona una guía comprensiva para entender, obtener y utilizar Modelos de Lenguaje de Gran Escala (LLMs).
-
-## 1. Obtener y Usar Modelos de Lenguaje de Gran Escala (LLM)
-
-Los modelos de lenguaje de gran escala se implementan y acceden de diversas maneras, incluyendo:
-
-### Autoalojamiento
-- **Descripción**: Utilizar hardware local para realizar inferencias.
-- **Ejemplo**: Ejecutar Llama 2 en tu PC usando [`llama.cpp`](https://github.com/ggerganov/llama.cpp).
-- **Ventajas**: Ideal para privacidad/seguridad o si ya cuentas con una GPU.
-
-### Alojamiento en la Nube
-- **Descripción**: Utilizar un proveedor de la nube para desplegar una instancia que aloje un modelo específico.
-- **Ejemplo**: Ejecutar LLM en proveedores de la nube como AWS, Azure, GCP y otros.
-- **Ventajas**: Óptimo para personalizar modelos y su tiempo de ejecución (ej. ajustar un modelo para tu caso de uso).
-
-### API Alojada
-- **Descripción**: Llamar a LLMs directamente a través de una API.
-- **Proveedores**: Incluye AWS Bedrock, Replicate, Anyscale, Together, entre otros.
-- **Ventajas**: La opción más sencilla en general.
-
-## 2. Información de Modelos Específicos
-
-Este apartado provee enlaces y detalles sobre diversos LLMs para su uso en distintos contextos.
-
-### 2.1 WEB the Bloke
-
-Recopilatorio de modelos para uso en modo local.
-
-- [TheBloke en Hugging Face](https://huggingface.co/TheBloke)
-
-### 2.2 Modelos Mistral7b
-
-Información y documentación sobre Modelos Mistral7b.
-
-- [Documentación de Modelos Mistral7b](https://docs.mistral.ai/models/)
-
-### 2.3 Modelos Llama2
-
-Información y documentación sobre Modelos Llama2.
-
-- [Página de Llama 2 en AI Meta](https://ai.meta.com/llama/)
-
-
-### 2.4 Modelos GPT
-
-Información y documentación sobre Modelos GPT.
-
-- [Documentación de Modelos GPT en OpenAI Platform](https://platform.openai.com/docs/models)
