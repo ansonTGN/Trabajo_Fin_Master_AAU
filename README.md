@@ -81,6 +81,11 @@ Este apartado provee enlaces y detalles sobre diversos LLMs para su uso en disti
 
 [Listado Modelos Huggingface](https://huggingface.co/models)
 
+- **Perplejidad**
+
+    La perplejidad es una medida que cuantifica qué tan bien un modelo de probabilidad predice una muestra. En el contexto de los LLM, una perplejidad baja indica que el modelo tiene una mayor certeza sobre sus predicciones.
+    Una perplejidad baja generalmente indica un mejor modelo pero es necesario tener tambien en cuenta el rendimiento del modelo como su aplicabilidad y robustez en escenarios del mundo real.
+
 ### 2.1 WEB the Bloke
 
 Recopilatorio de modelos para uso en modo local.
