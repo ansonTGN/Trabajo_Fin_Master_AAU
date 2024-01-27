@@ -31,13 +31,13 @@ Este proyecto de tesis tiene como objetivo brindar a las madres que utilizan la 
 
 
 
-# Guía de uso de Modelos de Lenguaje de Gran Escala (LLMs)
+# Uso de Modelos de Lenguaje de Gran Tamaño (LLMs)
 
-Este documento proporciona una guía comprensiva para entender, obtener y utilizar Modelos de Lenguaje de Gran Escala (LLMs).
+Este apartado proporciona una guía sencilla para entender, obtener y utilizar Modelos de Lenguaje de Gran Tamaño (LLMs).
 
 ## 1. Obtener y Usar Modelos de Lenguaje de Gran Escala (LLM)
 
-Los modelos de lenguaje de gran escala se implementan y acceden de diversas maneras, incluyendo:
+Los modelos de lenguaje de gran escala se pueden implementar y acceder de diversas maneras, incluyendo:
 
 ### Autoalojamiento
 - **Descripción**: Utilizar hardware local para realizar inferencias.
@@ -51,7 +51,7 @@ Los modelos de lenguaje de gran escala se implementan y acceden de diversas mane
 
 ### API Alojada
 - **Descripción**: Llamar a LLMs directamente a través de una API.
-- **Proveedores**: Incluye [AWS Bedrock](https://aws.amazon.com/es/bedrock/), [Replicate](https://replicate.com/), [Anyscale](https://www.anyscale.com/), [Together](https://www.together.ai/), entre otros.
+- **Proveedores**: Incluye [AWS Bedrock](https://aws.amazon.com/es/bedrock/), [Replicate](https://replicate.com/), [Anyscale](https://www.anyscale.com/), [Together](https://www.together.ai/), entre otros. Tampien es el esquema utilizado por [OpenAi](https://openai.com/) para sus modelos.
 - **Ventajas**: La opción más sencilla en general.
 
 ## 2. Información de Modelos Específicos
@@ -74,7 +74,7 @@ Información y documentación sobre Modelos Mistral7b.
 
 Información y documentación sobre Modelos Llama2.
 
-- [Página de Llama 2 en AI Meta](https://ai.meta.com/llama/)
+- [Documentación de Llama 2 en AI Meta](https://ai.meta.com/llama/)
 
 
 ### 2.4 Modelos GPT
