@@ -61,6 +61,26 @@ Este apartado provee enlaces y detalles sobre diversos LLMs para su uso en disti
 
 [Tabla Comparativa de Modelos Open LLMs](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)
 
+### 2.0 Criterios de selección modelos
+
+- **Licencia de uso**: Hay dos tipos de modelos por este concepto: 
+
+    *Modelos propietarios* en los que no se tiene acceso a la información completa del modelo ni a sus pesos.
+
+    *Modelos abiertos* en los que existe información sobre el modelo y se tiene acceso a sus pesos.
+
+- **Tipo de modelo**: Los tipos principales son: 
+
+    *Completar texto*: Diseñado para completar textos.
+
+    *Chat*: Diseñados para interactuar en modo pregunta-respuesta
+
+    *Instruct*: Diseñados para realizar instrucciones
+
+[Servicio POE para verificación modelos](https://poe.com/)
+
+[Listado Modelos Huggingface](https://huggingface.co/models)
+
 ### 2.1 WEB the Bloke
 
 Recopilatorio de modelos para uso en modo local.
