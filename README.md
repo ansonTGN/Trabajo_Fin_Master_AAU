@@ -153,4 +153,7 @@ Imagen de la aplicación WEB construida
 
 ![imagen WEB](/ESQUEMAS_GRAFICOS/WEB.png)
 
-**Nota:** Para el funcionamiento del programa es necesario tener arrancado un servicio DOCKER con Neo4j. (Dentro de esta BBDD estara la estructura de datos de la app. No se proporciona el DUMP de estos datos por motivos de confidencialidad)|
+**Nota:** Para el funcionamiento del programa es necesario tener arrancado un servicio DOCKER con Neo4j.
+Dentro de esta BBDD estará la estructura de datos de la app.
+
+No se proporciona el DUMP de estos datos por motivos de confidencialidad.|
