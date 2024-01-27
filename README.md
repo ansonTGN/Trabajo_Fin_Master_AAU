@@ -89,8 +89,9 @@ Instrucciones paso a paso sobre cómo instalar y configurar el proyecto.
 
 ### DOCKER Modelos LLM 
 
-Uso practico de [`llama.cpp`](https://github.com/ggerganov/llama.cpp) 
-Imagen Docker: ghcr.io/abetlen/llama-cpp-python
+Uso practico de [`llama.cpp`](https://github.com/ggerganov/llama.cpp)
+
+Imagen Docker: [ghcr.io/abetlen/llama-cpp-python](https://github.com/abetlen/llama-cpp-python/pkgs/container/llama-cpp-python)
 
 Los parámetros de configuración de los modelos son los siguientes:
 
