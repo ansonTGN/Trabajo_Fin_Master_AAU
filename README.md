@@ -185,3 +185,6 @@ Imagen de la aplicación WEB construida
 Dentro de esta BBDD estará la estructura de datos de la app.
 
 No se proporciona el DUMP de estos datos por motivos de confidencialidad.|
+
+Conoce más sobre mi:
+[![Video de Presentación](https://img.youtube.com/vi/0CUdsXlIllE/0.jpg)](https://youtu.be/0CUdsXlIllE?si=mFSiEfiN4bOmdJkA)
