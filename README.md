@@ -188,16 +188,7 @@ No se proporciona el DUMP de estos datos por motivos de confidencialidad.|
 
 ## Conoce Más Sobre Mí
 
-Te invito a ver el siguiente video para conocer un poco más sobre mí y mi trayectoria. Haz clic en la imagen para descubrir la visión que guia mi trabajo: 
-
-[![Video de Presentación](https://img.youtube.com/vi/0CUdsXlIllE/0.jpg)](https://youtu.be/0CUdsXlIllE?si=mFSiEfiN4bOmdJkA)
-
-
-
-
-## Conoce Más Sobre Mí
-
-Estoy emocionado de compartir contigo un video que ofrece una visión más profunda de mis proyectos y experiencias. Haz clic en la imagen de abajo para ver el video de presentación y sumergirte en mi viaje.
+Te invito a ver el siguiente video para conocer un poco más sobre mí y mi trayectoria. Haz clic en la imagen para descubrir la visión que guia mi trabajo:
 
 [![Video de Presentación](https://img.youtube.com/vi/0CUdsXlIllE/0.jpg)](https://youtu.be/0CUdsXlIllE?si=mFSiEfiN4bOmdJkA)
 
